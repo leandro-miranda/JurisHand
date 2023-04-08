@@ -12,17 +12,6 @@ jurídicos.
   <br />
 </details>
 
-<details>
-  <summary><strong>🗓 Data de Entrega</strong></summary>
-
-- Este projeto é individual
-- Serão `5` dias de projeto
-- Data de entrega prazo regular do projeto: `25/10/2022 14:00h`
-
-  </details>
-
- <br />
-
 # Orientações
 
 <details>
