@@ -1,0 +1,149 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "API JurisHand",
+		"description": "Essa API tem como objetivo listar, filtrar e buscar artigos jurídicos",
+		"termsOfService": "http://localhost:3007/terms",
+		"contact": {
+			"email": "leandromiranda2010@gmail.com"
+		},
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3007/articles",
+			"description": "API de test"
+		}
+	],
+	"paths": {
+		"/": {
+			"get": {
+				"description": "Lista todos os artigos",
+				"summary": "Lista todos os artigos",
+				"tags": [
+					"Artigos"
+				],
+				"responses": {
+					"200": {
+						"description": "Artigos listados com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"items": {
+										"$ref": "#/components/schemas/Article"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/search": {
+			"get": {
+				"description": " Busca artigos por termo-chave no título ou conteúdo",
+				"summary": "Busca artigos por termo-chave no título ou conteúdo",
+				"tags": [
+					"Artigos"
+				],
+				"parameters": [
+					{
+						"title": "Search Term",
+						"name": "searchTerm",
+						"in": "query",
+						"description": "Search Term",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Artigos listados com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"items": {
+										"$ref": "#/components/schemas/Article"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/{category}": {
+			"get": {
+				"description": "Filtra artigos por categoria",
+				"summary": "Filtra artigos por categoria",
+				"tags": [
+					"Artigos"
+				],
+				"parameters":
+				[
+					{
+						"title": "Category Name",
+						"name": "category",
+						"in": "path",
+						"description": "Category",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"civil",
+								"trabalhista",
+								"penal"
+							]
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Artigos filtrados com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"items": {
+										"$ref": "#/components/schemas/Article"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Article": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "number"
+					},
+					"title": {
+						"type": "string"
+					},
+					"author": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					},
+					"published_date": {
+						"type": "string"
+					},
+					"category": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}
